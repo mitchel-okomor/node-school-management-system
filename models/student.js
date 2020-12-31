@@ -10,6 +10,7 @@ const studentSchema = new mongoose.Schema({
     phone: String,
     address: String,
     email:  {type:String, index:true, unique:true, required:true},
+    password: String,
     "image_url": String,
 }, { timestamps: true });
 

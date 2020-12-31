@@ -14,6 +14,7 @@ const student = {
       state_of_residence,
       state_of_origin,
       email,
+      password,
       phone,
     } = req.body;
     console.log("student: "+ firstname)
@@ -28,6 +29,7 @@ const student = {
       phone,
       address,
       email,
+      password,
       image_url: req.file.filename,
     });
 

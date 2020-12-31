@@ -3,6 +3,7 @@ const passport = require("./passport");
 const auth ={
   //register a user
 register:  (req, res, next) => {
+  console.log( req.body)
   passport.authenticate('register', {session:false}, function (err, user, info) {
     if (err) {
       return next(err);
@@ -16,9 +17,24 @@ register:  (req, res, next) => {
   })(req, res, next);
 },
 
+  //register a student
+  registerStudent:  (req, res, next) => {
+    passport.authenticate('register_student', {session:false}, function (err, user, info) {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        console.log(info);
+        res.status(501).send(info);
+      } else {
+        res.status(200).send(info);
+      }
+    })(req, res, next);
+  },
+  
 //login user
-login: (req, res, next) => {
-  passport.authenticate('login', {session:false}, function (err, user, info) {
+login_student: (req, res, next) => {
+  passport.authenticate('login-student', {session:false}, function (err, user, info) {
     if (err) {
       return next(err);
     }
@@ -31,7 +47,20 @@ login: (req, res, next) => {
   })(req, res, next);
 },
 
-
+//login user
+login_staff: (req, res, next) => {
+  passport.authenticate('login-staff', {session:false}, function (err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      console.log("login No staff: "+info + " "+ user);
+      res.status(401).send(info);
+    } else {
+      res.status(200).send({info});
+    }
+  })(req, res, next);
+},
 
 //verify token in header
 jwt: (req, res, next) => {

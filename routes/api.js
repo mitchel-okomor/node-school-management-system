@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const user = require("../controllers/user");
+const staff = require("../controllers/staff");
 const event = require("../controllers/event");
 const order = require("../controllers/order")
 const auth = require('../middleware/auth');
@@ -14,16 +14,17 @@ router.get('/', function(req, res, next) {
 });
 
 
-//user routes
-router.post('/signup', auth.register);
-router.post('/login',  auth.login)
-router.get('/user/:id', auth.jwt, user.getUser);
-router.get('users', auth.jwt, user.getAllUsers);
-router.patch('/user', auth.jwt, user.updateUser);
-router.delete('/user', auth.jwt, user.deleteUser);
+//staff routes
+router.post('/staff', uplaod.single('image'), auth.register);
+router.post('/staff/login',  auth.login_staff)
+router.get('/staff/:id', auth.jwt, staff.getOne);
+router.get('/staffs', auth.jwt, staff.getAll);
+router.patch('/staff', auth.jwt, staff.updateOne);
+router.delete('/staff', auth.jwt, staff.deleteOne);
 
 //student routes
-router.post('/student', uplaod.single('image'), student.create );
+router.post('/student', uplaod.single('image'), auth.registerStudent );
+router.post('/student/login', auth.login_student)
 router.get('/student/:id', student.getOne);
 router.get('/students',  student.getAll);
 router.patch('/student/:id',  student.updateOne);

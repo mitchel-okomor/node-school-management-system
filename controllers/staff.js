@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-require('../models/user');
+require('../models/staff');
 
-const User = mongoose.model("user");
+const Staff = mongoose.model("staff");
 
 const user ={
 
-     getUser: (req, res)=>{
+     getOne: (req, res)=>{
         User.findById(req.params.id).then(
           data=>{
             res.send(data);
@@ -16,7 +16,7 @@ const user ={
       },
 
 
-      getAllUsers: (req, res)=>{
+      getAll: (req, res)=>{
         User.find({}).then(
           data=>{
             res.send(data);
@@ -26,7 +26,7 @@ const user ={
         })
       },
 
-    deleteUser: (req,res)=>{
+    deleteOne: (req,res)=>{
         User.findByIdAndRemove(req.params.id).
         then(data=>{
           console.log(data);
@@ -36,7 +36,8 @@ const user ={
         })
       },
       
-updateUser: (req, res)=>{
+updateOne: (req, res)=>{
+  console.log(req.body)
         User.findByIdAndUpdate(req.params.id, {
           name: req.body.name,
           email: req.body.email,
