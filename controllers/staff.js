@@ -3,10 +3,11 @@ require('../models/staff');
 
 const Staff = mongoose.model("staff");
 
-const user ={
+const staffObj ={
 
      getOne: (req, res)=>{
-        User.findById(req.params.id).then(
+       console.log(req.params.id)
+        Staff.findById(req.params.id).then(
           data=>{
             res.send(data);
           }
@@ -17,7 +18,7 @@ const user ={
 
 
       getAll: (req, res)=>{
-        User.find({}).then(
+        Staff.find({}).then(
           data=>{
             res.send(data);
           }
@@ -27,7 +28,7 @@ const user ={
       },
 
     deleteOne: (req,res)=>{
-        User.findByIdAndRemove(req.params.id).
+        Staff.findByIdAndRemove(req.params.id).
         then(data=>{
           console.log(data);
           res.send("deleted");
@@ -38,7 +39,7 @@ const user ={
       
 updateOne: (req, res)=>{
   console.log(req.body)
-        User.findByIdAndUpdate(req.params.id, {
+        Staff.findByIdAndUpdate(req.params.id, {
           name: req.body.name,
           email: req.body.email,
           phone: req.body.phone,
@@ -55,4 +56,4 @@ updateOne: (req, res)=>{
 }
 
 
-module.exports = user;
+module.exports = staffObj;

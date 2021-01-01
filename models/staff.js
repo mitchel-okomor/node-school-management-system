@@ -7,12 +7,13 @@ const staffSchema = new mongoose.Schema({
     address: String,
     "state_of_origin": String,
     "date_of_birth": String,
-    subject: String,
+    subject: Array,
     salary: Number,
     email:  {type:String, index:true, unique:true, required:true},
     category: {type:String,required:true},
     password: {type:String, required:true},
-    image_url: String
+    image_url: String,
+    "is_admin": false
 });
 
 mongoose.model("staff", staffSchema);
