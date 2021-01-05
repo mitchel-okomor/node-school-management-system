@@ -64,14 +64,13 @@ const infoObj ={
 updateOne: (req, res)=>{
   console.log(req.body)
         Info.findByIdAndUpdate(req.params.id, {
-          name: req.body.name,
-          email: req.body.email,
-          phone: req.body.phone,
-          picture: req.body.picture,
+        title: req.body.title,
+          description: req.body.description,
+        
         }).
         then(data=>{
           console.log(data);
-          res.send("Updated");
+          res.status(200).send(data);
         }).catch(err=>{
           console.log(err);
         })

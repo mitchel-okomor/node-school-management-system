@@ -16,8 +16,8 @@ router.get('/', function(req, res, next) {
 router.post('/info', auth.jwt, info.create);
 router.get('/info/:id', auth.jwt, info.getOne);
 router.get('/info', auth.jwt, info.getAll);
-router.patch('/info', auth.jwt, info.updateOne);
-router.delete('/info', auth.jwt, info.deleteOne);
+router.patch('/info/:id', auth.jwt, info.updateOne);
+router.delete('/info/:id', auth.jwt, info.deleteOne);
 
 
 //staff routes
