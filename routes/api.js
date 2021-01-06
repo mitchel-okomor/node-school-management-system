@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 //staff routes
-router.post('/info', auth.jwt, info.create);
+router.post('/info',  info.create);
 router.get('/info/:id', auth.jwt, info.getOne);
 router.get('/info', auth.jwt, info.getAll);
 router.patch('/info/:id', auth.jwt, info.updateOne);
