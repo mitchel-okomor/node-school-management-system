@@ -54,7 +54,7 @@ login_staff: (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      console.log("login No staff: "+info + " "+ user);
+      console.log("login No staff: "+info );
       res.status(401).send(info);
     } else {
       res.status(200).send({info});

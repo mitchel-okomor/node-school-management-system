@@ -18,6 +18,11 @@ mongoose.connect(mongoUrl, {
   useUnifiedTopology:true,
   useCreateIndex:true,
   useFindAndModify: false 
+}).then((res) =>{
+  console.log(res)}
+
+).catch((err)=>{
+  console.log(err);
 });
 
 mongoose.connection.on("connected", ()=>{
