@@ -36,19 +36,19 @@ passport.use(
         }
 
         //get all staff information, password has already been declared in function parameters and will be hashed below
-       const {
-        firstname,
-        lastname,
-        phone,
-        address,
-        state_of_origin,
-        date_of_birth,
-        subject,
-        salary,
-        email,
-        category,
-        image_url
-       }=req.body;
+        const {
+          firstname,
+          lastname,
+          phone,
+          address,
+          state_of_origin,
+          date_of_birth,
+          subject,
+          salary,
+          email,
+          category,
+          image_url,
+        } = req.body;
 
         let password = hash;
 
@@ -66,7 +66,7 @@ passport.use(
             email,
             category,
             password,
-            image_url
+            image_url,
           });
           newUser
             .save()
@@ -278,7 +278,6 @@ passport.use(
   )
 );
 
-
 //login a student
 passport.use(
   "login-student",
@@ -289,7 +288,7 @@ passport.use(
       passReqToCallback: true,
     },
     function (req, username, password, done) {
-      console.log("Strategy " + username);
+      console.log("Strategy " + password);
 
       Student.findOne({ email: username }, {}).then((student) => {
         if (!student) {
@@ -298,7 +297,7 @@ passport.use(
           });
         } else {
           console.log("bcrypt " + student.password);
-          //compare staff imputed password with database password
+          //compare student imputed password with database password
           bcrypt.compare(password, student.password, (error, valid) => {
             if (error) {
               console.log(error);
@@ -309,7 +308,7 @@ passport.use(
             } else {
               const token = jwt.sign(
                 {
-                  studentId: student.id,
+                  userId: student.id,
                 },
                 process.env.SECRET,
                 { expiresIn: "12h" }
