@@ -84,6 +84,9 @@ passport.use(
                   category: staff.category,
                   email: staff.email,
                   phone: staff.phone,
+                  address: staff.address,
+                  subject_class: staff.subject_class,
+                  state_of_origin: staff.state_of_origin,
                   userId: staff._id,
                 };
 
@@ -184,6 +187,10 @@ passport.use(
                   role: student.role,
                   email: student.email,
                   phone: student.phone,
+                  address: student.address,
+                  subject_class: student.subject_class,
+                  state_of_origin: student.state_of_origin,
+                  state_of_residence: student.state_of_residence,
                   userId: student._id,
                 };
 
@@ -261,6 +268,9 @@ passport.use(
                 lastname: staff.lastname,
                 email: staff.email,
                 phone: staff.phone,
+                address: staff.address,
+                subject_class: staff.subject_class,
+                state_of_origin: staff.state_of_origin,
                 role: staff.role,
                 _id: staff._id,
               };
@@ -318,6 +328,10 @@ passport.use(
                 lastname: student.lastname,
                 email: student.email,
                 phone: student.phone,
+                address: student.address,
+                subject_class: student.subject_class,
+                state_of_origin: student.state_of_origin,
+                state_of_residence: student.state_of_residence,
                 role: student.role,
                 _id: student._id,
               };
@@ -345,6 +359,7 @@ passport.use(
   new JWTstrategy(opts, (jwt_payload, done) => {
     try {
       console.log("JWT passport: " + jwt_payload.userId);
+
       //Pass the staff details to the next middleware
       return done(null, jwt_payload.userId);
     } catch (error) {
