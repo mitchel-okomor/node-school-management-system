@@ -13,7 +13,8 @@ const studentSchema = new mongoose.Schema(
     email: { type: String, index: true, unique: true, required: true },
     password: String,
     image_url: String,
-    role: { type: String, required: true, default: "student" },
+    role: { type: String, default: "student" },
+    fees_paid: { type: Number, default: 0 },
   },
   { timestamps: true }
 );
